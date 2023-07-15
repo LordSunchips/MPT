@@ -1,0 +1,96 @@
+* {
+    background-color: #f5e4d5;
+}
+
+.header {
+    background-color:#b5a393;
+    display: flex;
+    margin: auto;
+    border-radius: 20px;
+    padding: 1%;
+}
+
+.center-panel {
+    display: flex;
+}
+
+.panel {
+    margin-top: 20px;
+    display: inline-grid;
+    width: 25vw;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.panel .panel-header {
+    background-color: #b5a393;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.panel #panel-header-text {
+    background-color: #b5a393;
+    margin-left: 2vw
+}
+
+.panel-contents {
+    background-color: #deccbd;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.panel .panel-contents .panel-element {
+    background-color: #deccbd;
+}
+
+.center-panel .compute-button-div {
+    display: inline-grid;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.center-panel .compute-button {
+    border: none;
+    background-color: #93db9d;
+    padding: 30px 28px;
+    font-size: 36px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    width: 65vw;
+    height: 20vh;
+    margin-bottom: 5vh;
+}
+
+.center-panel .compute-button:hover {
+    background-color: #74ab7b;
+}
+
+#portfolio-image {
+    width: 65vw;
+    /* margin-top: 10px; */
+    margin-left: 20px;
+    margin-bottom: 20vh;
+    border-radius: 20px;
+}
+
+#ticker-adder {
+    width: 25vw;
+    margin-top: 3vh;
+}
+
+#add-ticker-button {
+    margin-top: 1vh;
+    width: 12vw;
+}
+
+#remove-ticker-button {
+    margin-top: 1vh;
+    width: 12vw;
+}
+
+.input-adder {
+    width: 25vw;
+    margin-top: 3vh;
+}
