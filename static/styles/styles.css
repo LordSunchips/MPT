@@ -17,15 +17,15 @@
 .panel {
     margin-top: 20px;
     display: inline-grid;
-    width: 25vw;
+    width: 27vw;
     height: 90%;
-    border-radius: 20px;
+    margin-right: 2vw;
 }
 
 .panel .panel-header {
     background-color: #b5a393;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
 }
 
 .panel #panel-header-text {
@@ -37,6 +37,8 @@
     background-color: #deccbd;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    align-items: center;
+    display: grid;
 }
 
 .panel .panel-contents .panel-element {
@@ -61,6 +63,7 @@
     width: 65vw;
     height: 20vh;
     margin-bottom: 5vh;
+    margin-left: 2vw;
 }
 
 .center-panel .compute-button:hover {
@@ -75,7 +78,7 @@
     border-radius: 20px;
 }
 
-#ticker-adder {
+#tickerSymbolInput {
     width: 25vw;
     margin-top: 3vh;
 }
@@ -93,4 +96,19 @@
 .input-adder {
     width: 25vw;
     margin-top: 3vh;
+}
+
+.button-form {
+    background-color: #deccbd;
+    align-items: center;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.stock-button {
+    width: 21vw;
+    border-radius: 2px;
+    background-color: transparent;
 }
