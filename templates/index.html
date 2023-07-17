@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Modern Portfolio Theory Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#add-ticker-button').click(function() {
+                var symbol = $('#tickerSymbolInput').val().toUpperCase();
+                if (symbol) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/validate_stock',
+                        data: {stock: symbol},
+                        success: function(response) {
+                            if (response.valid) {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/add_stock',
+                                    data: {stock: symbol},
+                                    success: function(response) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                alert('Invalid ticker symbol. Please enter a valid symbol.');
+                            }
+                        }
+                    });
+                }
+            });
+
+
+            $('#remove-ticker-button').click(function() {
+                var symbol = $('#tickerSymbolInput').val().toUpperCase();
+                if (symbol) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/remove_stock',
+                        data: {stock: symbol},
+                        success: function(response) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+
+            $('#clear-button').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: '/clear_stocks',
+                    success: function(response) {
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1 class="header">Modern Portfolio Theory Project</h1>
+    </div>
+
+    <div class="center-panel">
+        <div class="panel">
+            <div class="panel-header">
+                <h2 id="panel-header-text">Portfolio</h2>
+            </div>
+            <div class="panel-contents">
+                {% for item in stocks %}
+                <form class="button-form" action="https://finance.yahoo.com/quote/{{ item }}?p={{ item }}">
+                    <button class="stock-button" type="submit">{{ item }}</button>
+                </form>
+                <br>
+                {% endfor %}
+            </div>
+            <div class="input-adder">
+                <input id="tickerSymbolInput" type="text" placeholder="Ticker">
+                <div id="input-buttons">
+                    <button id="add-ticker-button">Add</button>
+                    <button id="remove-ticker-button">Remove</button>
+                    <button id="clear-button">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="compute-button-div">
+            <button class="compute-button" type="button">COMPUTE</button>
+            <img id="portfolio-image" src="https://rfsadvisors.com/wp-content/uploads/Pie-Chart-3.jpg" alt="">
+        </div>
+    </div>
+</body>
+</html>
