@@ -1,8 +1,9 @@
-import compute
 from flask import Flask, render_template, request, redirect, jsonify
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
+import compute
 import yfinance as yf
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import base64
 import matplotlib
