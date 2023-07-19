@@ -45,39 +45,6 @@
     background-color: #deccbd;
 }
 
-.center-panel .compute-button-div {
-    display: inline-grid;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.center-panel .compute-button {
-    border: none;
-    background-color: #93db9d;
-    padding: 30px 28px;
-    font-size: 36px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 100px;
-    width: 65vw;
-    height: 20vh;
-    margin-bottom: 5vh;
-    margin-left: 2vw;
-}
-
-.center-panel .compute-button:hover {
-    background-color: #74ab7b;
-}
-
-#portfolio-image {
-    width: 65vw;
-    /* margin-top: 10px; */
-    margin-left: 20px;
-    margin-bottom: 20vh;
-    border-radius: 20px;
-}
-
 #tickerSymbolInput {
     width: 25vw;
     margin-top: 3vh;
@@ -91,6 +58,11 @@
 #remove-ticker-button {
     margin-top: 1vh;
     width: 12vw;
+}
+
+#clear-ticker-button {
+    margin-top: 1vh;
+    width: 24vw;
 }
 
 .input-adder {
@@ -111,4 +83,12 @@
     width: 21vw;
     border-radius: 2px;
     background-color: transparent;
+}
+
+#portfolio-image {
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 60vw;
+    /* calculate the height to be responsive as well as preserve the aspect ratio with the width */
+    height: calc(60vw * 0.75);
 }
