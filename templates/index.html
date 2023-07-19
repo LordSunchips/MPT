@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Modern Portfolio Theory Project</title>
+    <title>Modern Portfolio Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -12,26 +12,14 @@
                 if (symbol) {
                     $.ajax({
                         type: 'POST',
-                        url: '/validate_stock',
+                        url: '/add_stock',
                         data: {stock: symbol},
                         success: function(response) {
-                            if (response.valid) {
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '/add_stock',
-                                    data: {stock: symbol},
-                                    success: function(response) {
-                                        location.reload();
-                                    }
-                                });
-                            } else {
-                                alert('Invalid ticker symbol. Please enter a valid symbol.');
-                            }
+                            location.reload();
                         }
                     });
                 }
             });
-
 
             $('#remove-ticker-button').click(function() {
                 var symbol = $('#tickerSymbolInput').val().toUpperCase();
@@ -47,7 +35,7 @@
                 }
             });
 
-            $('#clear-button').click(function() {
+            $('#clear-ticker-button').click(function() {
                 $.ajax({
                     type: 'POST',
                     url: '/clear_stocks',
@@ -61,7 +49,7 @@
 </head>
 <body>
     <div class="header">
-        <h1 class="header">Modern Portfolio Theory Project</h1>
+        <h1 class="header">Modern Portfolio Generator</h1>
     </div>
 
     <div class="center-panel">
@@ -82,14 +70,13 @@
                 <div id="input-buttons">
                     <button id="add-ticker-button">Add</button>
                     <button id="remove-ticker-button">Remove</button>
-                    <button id="clear-button">Clear</button>
+                    <button id="clear-ticker-button">Clear</button>
                 </div>
             </div>
         </div>
 
         <div class="compute-button-div">
-            <button class="compute-button" type="button">COMPUTE</button>
-            <img id="portfolio-image" src="https://rfsadvisors.com/wp-content/uploads/Pie-Chart-3.jpg" alt="">
+            <img id="portfolio-image" src="data:image/png;base64,{{ chart_image }}" alt="Pie Chart">
         </div>
     </div>
 </body>
