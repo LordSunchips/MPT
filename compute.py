@@ -64,10 +64,11 @@ def expected_return(stock):
     # obtain a dataframe of the stock from yfinance
     stock_df = yf.download(stock, period='5y')
 
-    average_daily_return = stock_df['Close'].pct_change(1).mean()
-    average_weekly_return = stock_df['Close'].pct_change(7).mean()
-    average_monthly_return = stock_df['Close'].pct_change(30).mean()
-    average_yearly_return = stock_df['Close'].pct_change(365).mean()
+    average_daily_return = ((stock_df['Adj Close'] - stock_df['Open']) / stock_df['Open']).mean()
+    
+    average_weekly_return = stock_df['Adj Close'].pct_change(7).mean()
+    average_monthly_return = stock_df['Adj Close'].pct_change(30).mean()
+    average_yearly_return = stock_df['Adj Close'].pct_change(365).mean()
 
     print(f"average daily return: {average_daily_return}")
     print(f"average weekly return: {average_weekly_return}")
@@ -77,12 +78,29 @@ def expected_return(stock):
     # adjust for risk using CAPM 
     # CAPM = risk free rate + beta * (expected market return - risk free rate)
     expected_market_returns = 0.0381
-    adjusted_return = expected_market_returns + beta(stock) * (average_weekly_return - expected_market_returns)
+    adjusted_return = expected_market_returns + beta(stock) * (average_daily_return - expected_market_returns)
     return adjusted_return
 
-print(expected_return('AAPL'))
+print(f"adjusted daily returns: {expected_return('AAPL')}")
 
 # 2. Calculate the desired asset allocation
+
+# @param stocks: a list of stocks
+def correlation(stocks):
+    # create a correlation matrix (2D array) of the stocks
+    correlation_matrix = np.zeros((len(stocks), len(stocks)))
+    for i in range(0, len(stocks)):
+        for j in range(0, len(stocks)):
+            correlation_matrix[i][j] = np.corrcoef(yf.download(stocks[i], period='5y')['Adj Close'], yf.download(stocks[j], period='5y')['Adj Close'])[0][1]
+            correlation_matrix[j][i] = correlation_matrix[i][j]
+
+
+def expected_return_range(low, high):
+    return tuple(low, high)
+
+def efficient_frontier():
+    pass
+
 
 
 # 3. Calculations to optimize the portfolio to gain highest return with lowest risk
