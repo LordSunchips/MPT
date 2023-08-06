@@ -1,8 +1,8 @@
-import random
-import yfinance as yf
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import random
+import yfinance as yf
 from sklearn.linear_model import LinearRegression
 
 snp_df = yf.download('SPY', period='5y')
@@ -26,3 +26,13 @@ def create_portfolio(stocks):
     dict[stocks[len(stocks) - 1]] = num
     return dict
 
+
+# @param: portfolio: a list of portfolio ticker symbols
+def covariance_matrix(portfolio):
+    for ticker in portfolio:
+        average_daily_return = snp_df['Daily Return'].mean()
+
+# @param share_vector: a vector of shares
+# @param covariance_matrix: a covariance matrix of the shares
+def variance(share_vector, covariance_matrix):
+    return np.dot((share_vector.T @ covariance_matrix).T, share_vector)
